@@ -60,6 +60,17 @@
 
 <script>
 
+  const keys = Array.from(document.getElementsByClassName("key"));
+  const audios = Array.from(document.getElementsByTagName("audio"));
+
+  window.addEventListener("keypress", (e) => {
+    console.log(e.keyCode);
+    audios.forEach(audio => {
+      if (e.keyCode === Number(audio.getAttribute("data-key"))) {
+        audio.play();
+      }
+    });
+  })
 </script>
 
 
