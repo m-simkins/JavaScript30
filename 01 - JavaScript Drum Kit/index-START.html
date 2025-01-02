@@ -63,14 +63,28 @@
   const keys = Array.from(document.getElementsByClassName("key"));
   const audios = Array.from(document.getElementsByTagName("audio"));
 
-  window.addEventListener("keypress", (e) => {
+  window.addEventListener("keydown", (e) => {
     console.log(e.keyCode);
     audios.forEach(audio => {
       if (e.keyCode === Number(audio.getAttribute("data-key"))) {
         audio.play();
       }
     });
-  })
+    keys.forEach(key => {
+      if (e.keyCode === Number(key.getAttribute("data-key"))) {
+        key.classList.add("playing");
+      }
+    });
+  });
+
+  window.addEventListener("keyup", (e) => {
+    keys.forEach(key => {
+      if (e.keyCode === Number(key.getAttribute("data-key"))) {
+        key.classList.remove("playing");
+      }
+    });
+  });
+
 </script>
 
 
